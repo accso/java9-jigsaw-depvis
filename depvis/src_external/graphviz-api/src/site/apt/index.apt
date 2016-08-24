@@ -1,0 +1,4 @@
+What is this?
+
+  This project develops a library for creating a graph in memory and calling GraphViz
+  to render it.

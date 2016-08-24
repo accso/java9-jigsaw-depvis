@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="GraphViz Java API">
+  <skin>
+    <groupId>org.jvnet.maven-javanet-skin</groupId>
+    <artifactId>maven-javanet-skin</artifactId>
+    <version>1.2</version>
+  </skin>
+
+  <body>
+    <menu name="GraphViz Java API">
+      <item name="Overview" href="index.html"/>
+      <item name="Javadoc" href="nonav/apidocs/index.html"/>
+      <item name="Source code" href="nonav/xref/"/>
+      <item name="Download" href="http://maven.dyndns.org/2/org/kohsuke/graphviz-api/"/>
+
+      <item name="Mailing lists" href="servlets/ProjectMailingListList"/>
+      <item name="Source code" href="source/browse/trunk/graphviz-api/"/>
+      <item name="Issues" href="servlets/ProjectIssues"/>
+    </menu>
+    ${reports}
+  </body>
+</project>
