@@ -15,6 +15,7 @@ Result looks like this (in this case all Java 9 system modules (build b127) are 
 ![Java 9 System Modules](/Sample-J9SystemModules.png)
 
 DepVis takes into account:
+
 1. Requires/Read relationships (currently visualized as a blue arrow)
    * requires mandated to `java.base` (dashed blue arrow)
    * requires public (blue arrow)
