@@ -80,6 +80,7 @@ DepVis can be configured in a configuration properties file (see depvis.properti
 
 ### TODOs
 No software is ready, ever ;-) So here are some ideas left (any other feedback very welcome!):
+
 1. Include n-transitivity for requires-public
 2. Allow filtering of individual relationships (black/white listing)
 3. Include uses/provides relationships
