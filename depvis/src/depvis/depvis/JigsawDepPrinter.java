@@ -12,10 +12,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
-  * JigsawDepPrinter
-  *   produces module information and prints it all to STDOUT
-  *   Configuration is done in a properties configuration file (same as for JigsawDepVisualizer)
-  */ 
+ * DepVis visualization tool for Java 9 Jigsaw modules
+ * see https://github.com/accso/java9-jigsaw-depvis
+ * 
+ * JigsawDepPrinter (second main class besides JigsawDepVisualizer)
+ *   This printer produces module information and prints it all to STDOUT.
+ *   Its configuration is done in a properties configuration file (same as for JigsawDepVisualizer)
+ */ 
 public class JigsawDepPrinter {
     public static void main(String[] args) throws Exception {
         // load configuration settings from properties file

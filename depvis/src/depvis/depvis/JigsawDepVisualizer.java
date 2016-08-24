@@ -5,7 +5,6 @@ import java.lang.module.ModuleDescriptor;
 import java.lang.module.ModuleDescriptor.Requires.Modifier;
 import java.lang.module.ModuleFinder;
 import java.lang.module.ModuleReference;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,10 +15,14 @@ import java.util.Set;
 import org.kohsuke.graphviz.Node;
 
 /**
-  * JigsawDepVisualizer 
-  *   reads module information from system and/or module path 
-  *   including all the relationsships and produces a GraphViz output file
-  */
+ * DepVis visualization tool for Java 9 Jigsaw modules
+ * see https://github.com/accso/java9-jigsaw-depvis
+ * 
+ * JigsawDepVisualizer 
+ *   This visualizer reads module information from system and/or a configured module path 
+ *   including all the relationsships (i.e. requires, exports etc.) 
+ *   and then produces a GraphViz output file.
+ */
 public class JigsawDepVisualizer {
     public static void main(String[] args) throws Exception {
         // load configuration settings from properties file

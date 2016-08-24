@@ -1,9 +1,11 @@
 package depvis;
 
 /**
-  * Helper class which keeps track of some statistics 
-  *   Counts modules, filtered, system etc.
-  */
+ * DepVis visualization tool for Java 9 Jigsaw modules
+ * see https://github.com/accso/java9-jigsaw-depvis
+ * 
+ * Helper class which keeps track of some statistics, i.e. counts modules, filtered, system etc.
+ */
 class StatisticsHelper {
     static long start;
 

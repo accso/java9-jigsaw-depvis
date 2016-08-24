@@ -3,7 +3,6 @@ package depvis;
 import static org.kohsuke.graphviz.Attribute.COLOR;
 import static org.kohsuke.graphviz.Attribute.FONTCOLOR;
 import static org.kohsuke.graphviz.Attribute.FONTNAME;
-import static org.kohsuke.graphviz.Attribute.FONTSIZE;
 import static org.kohsuke.graphviz.Attribute.SHAPE;
 import static org.kohsuke.graphviz.Attribute.SIZE;
 import static org.kohsuke.graphviz.Attribute.STYLE;
@@ -22,6 +21,9 @@ import org.kohsuke.graphviz.Graph;
 import org.kohsuke.graphviz.Style;
 
 /**
+ * DepVis visualization tool for Java 9 Jigsaw modules
+ * see https://github.com/accso/java9-jigsaw-depvis
+ * 
  * Helper class for the GraphViz output
  */
 class GraphVizHelper {

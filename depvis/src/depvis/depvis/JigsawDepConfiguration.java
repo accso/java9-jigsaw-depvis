@@ -7,8 +7,11 @@ import java.util.Arrays;
 import java.util.Properties;
 
 /**
+ * DepVis visualization tool for Java 9 Jigsaw modules
+ * see https://github.com/accso/java9-jigsaw-depvis
+ * 
  * Helper class to read a properties configuration file ("depvis.properties") 
- *   and to maintain the configurations settings
+ *   and to maintain the configurations settings (or the defaults)
  */
 class JigsawDepConfiguration {
     // only modules with names matching one of these Strings (via "startsWith") are visualized
