@@ -2,7 +2,7 @@
 
 mkdir -p ${DEPVIS_MOD_PATH}
 mkdir -p ${DEPVIS_MODULE_PATH}
-mkdir -p ${DEPVIS_LIB_PATH}
+mkdir -p ${DEPVIS_AUTOMATIC_MODULE_PATH}
 
 # compile graphviz-api first, result is jar file in ./amlib/graphviz-api-1.2.1.jar
 pushd src_external > /dev/null 2>&1
