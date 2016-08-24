@@ -85,11 +85,11 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 1. Include n-transitivity for requires-public
 2. Allow filtering of individual relationships (black/white listing)
 3. Include uses/provides relationships
-4. Include package names for modules
-5. Include hash information of a module
-6. Currently, DepVis shows modules from the Observable modules (module path and system modules). Allow to show modules from a Configuration.
-7. Allow to configure colors, line styles etc. from outside (currently one needs to change Java class depvis.GraphVizHelper and recompile).
-8. Adding a GraphViz legend seems only possible with `rankdir=LR`. This flips the whole graph as it cannot be done in a subgraph only. Any way to get around this?
+4. Include a module's package names
+5. Include a module's hash value
+6. Currently, DepVis only shows modules from the Observable Modules (= module path and system modules). Also allow to show modules from a Configuration.
+7. Allow to configure colors, line styles etc. from outside (currently one needs to change Java class depvis.GraphVizHelper.java and recompile).
+8. Adding a GraphViz legend seems only possible with `rankdir=LR`. This settings then flips the whole graph (as it cannot be done in a subgraph only). Any way to get around this?
 
 ### Acknowledgments
 Thx to the GraphViz team (http://www.graphviz.org) for this magic tool!
