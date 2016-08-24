@@ -25,10 +25,10 @@ class JigsawDepConfiguration {
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
-    static boolean showRequires = true;			// do we want to visualize requires?
+    static boolean showRequires = true;         // do we want to visualize requires?
     static boolean showRequiresMandated = true;	// do we want to visualize requires mandated?
-    static boolean showRequiresPublic = true;	// do we want to visualize requires public?
-    static boolean showExportsTo = true;		// do we want to visualize exports-to?
+    static boolean showRequiresPublic = true;   // do we want to visualize requires public?
+    static boolean showExportsTo = true;        // do we want to visualize exports-to?
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
