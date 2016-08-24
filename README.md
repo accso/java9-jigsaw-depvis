@@ -6,8 +6,12 @@ Written by [Martin Lehmann](https://github.com/MartinLehmann1971), [Kristine Sch
 Version 0.1
 
 ### What is this about?
-DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in [Project Jigsaw](http://openjdk.java.net/projects/jigsaw/) by [JSR 376](https://www.jcp.org/en/jsr/detail?id=376) and [JEP 261](http://openjdk.java.net/jeps/261). 
+DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in 
+[Project Jigsaw](http://openjdk.java.net/projects/jigsaw/) by [JSR 376]
+(https://www.jcp.org/en/jsr/detail?id=376) and [JEP 261](http://openjdk.java.net/jeps/261). 
 DepVis produces a [GraphViz](http://www.graphviz.org) output file (DOT file) which can be rendered with GraphViz in a separate step.
+
+![Java 9 System Modules](/Sample-J9SystemModules.png)
 
 DepVis takes into account:
 1. Requires/Read relationships (currently visualized as a blue arrow)
@@ -79,17 +83,17 @@ DepVis can be configured in a configuration properties file (see depvis.properti
     * String
     * configure a title for the diagram
 
-### TODOs
+### TODOs, LOP, Backlog, Ideas, ...
 No software is ready, ever ;-) So here are some ideas left (any other feedback very welcome!):
 
-1. Include n-transitivity for requires-public
-2. Allow filtering of individual relationships (black/white listing)
-3. Include uses/provides relationships
-4. Include a module's package names
-5. Include a module's hash value
-6. Currently, DepVis only shows modules from the Observable Modules (= module path and system modules). Also allow to show modules from a Configuration.
-7. Allow to configure colors, line styles etc. from outside (currently one needs to change Java class depvis.GraphVizHelper.java and recompile).
-8. Adding a GraphViz legend seems only possible with `rankdir=LR`. This settings then flips the whole graph (as it cannot be done in a subgraph only). Any way to get around this?
+- [ ] Include n-transitivity for requires-public
+- [ ] Allow filtering of individual relationships (black/white listing)
+- [ ] Include uses/provides relationships
+- [ ] Include a module's package names
+- [ ] Include a module's hash value
+- [ ] Currently, DepVis only shows modules from the Observable Modules (= module path and system modules). Also allow to show modules from a Configuration.
+- [ ] Allow to configure colors, line styles etc. from outside (currently one needs to change Java class depvis.GraphVizHelper.java and recompile).
+- [ ] Adding a GraphViz legend seems only possible with `rankdir=LR`. This settings then flips the whole graph (as it cannot be done in a subgraph only). Any way to get around this?
 
 ### Acknowledgments
 Thx to the GraphViz team (http://www.graphviz.org) for this magic tool!
