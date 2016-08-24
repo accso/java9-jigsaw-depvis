@@ -77,6 +77,7 @@ DepVis can be configured in a configuration properties file (see depvis.properti
 12. `depvis.diagramTitle`
     * String
     * configure a title for the diagram
+
 ### TODOs
 No software is ready, ever ;-) So here are some ideas left (any other feedback very welcome!):
 1. Include n-transitivity for requires-public
