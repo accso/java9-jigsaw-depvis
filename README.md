@@ -31,8 +31,8 @@ Further hints:
 6. Output is `moduledependencies.dot` and `moduledependencies.png` (and a second file pair `...with-legend`).
 
 ### Configuration
-DepVis can be configured in a configuration properties file (see depvis.properties).
-Configuration settings are:
+DepVis can be configured in a configuration properties file (see depvis.properties) as follows:
+
 1. `depvis.includeFilter`
    * comma-separated Strings
    * module names whitelist, _all_ used to be checked with `String.startsWith`
