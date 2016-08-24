@@ -1,5 +1,3 @@
-cat readme.txt
-
 . ./clean.sh
 . ./compile.sh
 
