@@ -19,16 +19,16 @@ class JigsawDepConfiguration {
     // but also any module with a name matching one of these Strings (via "startsWith") will not be visualized
     private static String[] excludeFilter = new String[] { /*...*/ };	
 
-    static boolean useSystemModules = true;			  // do we want to visualize modules from system?
-    static boolean useModulePath    = true;			  // do we want to visualize modules from a module path (if so, depvis.modulePath needs to be set)
-    static String  modulePath       = null;       // example "/jigsaw/example/mlib";
+    static boolean useSystemModules = true;	    // do we want to visualize modules from system?
+    static boolean useModulePath    = true;	    // do we want to visualize modules from a module path (if so, depvis.modulePath needs to be set)
+    static String  modulePath       = null;     // example "/jigsaw/example/mlib";
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
-    static boolean showRequires = true;				    // do we want to visualize requires?
-    static boolean showRequiresMandated = true;		// do we want to visualize requires mandated?
-    static boolean showRequiresPublic = true;		  // do we want to visualize requires public?
-    static boolean showExportsTo = true;			    // do we want to visualize exports-to?
+    static boolean showRequires = true;			// do we want to visualize requires?
+    static boolean showRequiresMandated = true;	// do we want to visualize requires mandated?
+    static boolean showRequiresPublic = true;	// do we want to visualize requires public?
+    static boolean showExportsTo = true;		// do we want to visualize exports-to?
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -87,13 +87,13 @@ class JigsawDepConfiguration {
         }
 
         useSystemModules     = Boolean.valueOf(propsFromFile.getProperty("depvis.useSystemModules", Boolean.toString(useSystemModules)));
-        useModulePath        = Boolean.valueOf(propsFromFile.getProperty("depvis.useModulePath", Boolean.toString(useModulePath)));
+        useModulePath        = Boolean.valueOf(propsFromFile.getProperty("depvis.useModulePath",    Boolean.toString(useModulePath)));
         modulePath           = propsFromFile.getProperty("depvis.modulePath", modulePath);
 
-        showRequires         = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequires", Boolean.toString(showRequires)));
+        showRequires         = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequires",         Boolean.toString(showRequires)));
         showRequiresMandated = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresMandated", Boolean.toString(showRequiresMandated)));
-        showRequiresPublic   = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresPublic", Boolean.toString(showRequiresPublic)));
-        showExportsTo        = Boolean.valueOf(propsFromFile.getProperty("depvis.showExportsTo", Boolean.toString(showExportsTo)));
+        showRequiresPublic   = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresPublic",   Boolean.toString(showRequiresPublic)));
+        showExportsTo        = Boolean.valueOf(propsFromFile.getProperty("depvis.showExportsTo",        Boolean.toString(showExportsTo)));
 
         outputFileName       = propsFromFile.getProperty("depvis.outputFileName", outputFileName);
         showLegend           = Boolean.valueOf(propsFromFile.getProperty("depvis.showLegend", Boolean.toString(showLegend)));
