@@ -1,0 +1,8 @@
+/depvis/start_eclipse4.6-java9.bat
+/depvis/.metadata
+/depvis/moduledependencies*.*
+/depvis/amlib/*.jar
+/depvis/mlib/*.jar
+/depvis/mods/depvis
+/depvis/src/depvis/target
+/depvis/src_external/graphviz-api/target
