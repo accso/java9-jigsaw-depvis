@@ -21,6 +21,9 @@ import java.util.Date;
 import org.kohsuke.graphviz.Graph;
 import org.kohsuke.graphviz.Style;
 
+/**
+ * Helper class for the GraphViz output
+ */
 class GraphVizHelper {
     static Graph graph = new Graph();
 
@@ -33,6 +36,7 @@ class GraphVizHelper {
     static Style reqPublicStyle     = new Style();
     static Style exportsToStyle     = new Style();
 
+    // GraphViz styles for the nodes (= modules) and the edges (= req/exp relationships)
     static {
         graphStyle.attr(SIZE, Float.valueOf(320.0f));
         graph.id("Java9 Dependency Visualizer");
@@ -65,6 +69,7 @@ class GraphVizHelper {
         exportsToStyle.attr(WEIGHT, 2);
     }
 
+    // finally write the GraphViz output to the output file
     static void writeGraphToFile() throws Exception {
         File dotFile = new File(JigsawDepConfiguration.outputFileName);
         File legendFile = new File(dotFile.getCanonicalFile().getParent(), 
@@ -76,6 +81,7 @@ class GraphVizHelper {
         graph.writeTo(new FileOutputStream(legendFile), comment, getLegend());
     }
 
+    // get the node style for a Jigsaw module
     static Style getNodeStyle(ModuleDescriptor modDesc) {
         if (modDesc!=null && modDesc.isAutomatic()) {
             return GraphVizHelper.nodeAutomaticStyle;
@@ -83,6 +89,8 @@ class GraphVizHelper {
         return GraphVizHelper.nodeStyle;
     }
     
+    // create a GraphViz legend
+    //   note that this flips the output because of rankdir=LR
     private static String getLegend() {
         StringBuilder sb = new StringBuilder();
 

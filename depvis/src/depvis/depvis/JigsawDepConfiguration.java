@@ -6,28 +6,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
+/**
+ * Helper class to read a properties configuration file ("depvis.properties") 
+ *   and to maintain the configurations settings
+ */
 class JigsawDepConfiguration {
     // only modules with names matching one of these Strings (via "startsWith") are visualized
     private static String[] includeFilter = new String[] { /* "java." ... */ };
     // but also any module with a name matching one of these Strings (via "startsWith") will not be visualized
     private static String[] excludeFilter = new String[] { /*...*/ };	
 
-    static boolean useSystemModules = true;			// do we want to visualize modules from system?
-    static boolean useModulePath    = true;			// do we want to visualize modules from a module path (if so, modulePath needs to be set)
-    static String  modulePath       = null;         // "j:/src/example_automatic-module-logging/mlib";
+    static boolean useSystemModules = true;			  // do we want to visualize modules from system?
+    static boolean useModulePath    = true;			  // do we want to visualize modules from a module path (if so, depvis.modulePath needs to be set)
+    static String  modulePath       = null;       // example "/jigsaw/example/mlib";
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
-    static boolean showRequires = true;				// do we want to visualize requires?
+    static boolean showRequires = true;				    // do we want to visualize requires?
     static boolean showRequiresMandated = true;		// do we want to visualize requires mandated?
-    static boolean showRequiresPublic = true;		// do we want to visualize requires public?
-    static boolean showExportsTo = true;			// do we want to visualize exports-to?
+    static boolean showRequiresPublic = true;		  // do we want to visualize requires public?
+    static boolean showExportsTo = true;			    // do we want to visualize exports-to?
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
     static String  outputFileName = "j:/src/depvis/moduledependencies.dot";		// path&name of the graphviz output file
-    static boolean showLegend = true;											// show a legend?
-    static String  diagramTitle = "Java 9, Jigsaw, Module Dependencies";		// title of the diagram (in the legend)
+    static boolean showLegend = true;											                    // show a legend?
+    static String  diagramTitle = "Java 9, Jigsaw, Module Dependencies";		  // title of the diagram (in the legend)
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -58,6 +62,7 @@ class JigsawDepConfiguration {
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
+    // read the DepVis properties configuration file
     static void readConfigPropertiesFile(String fileName) throws Exception {
         Properties propsFromFile = new Properties();
 

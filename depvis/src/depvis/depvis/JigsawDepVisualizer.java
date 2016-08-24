@@ -15,6 +15,11 @@ import java.util.Set;
 
 import org.kohsuke.graphviz.Node;
 
+/**
+  * JigsawDepVisualizer 
+  *   reads module information from system and/or module path 
+  *   including all the relationsships and produces a GraphViz output file
+  */
 public class JigsawDepVisualizer {
     public static void main(String[] args) throws Exception {
         // load configuration settings from properties file
@@ -29,6 +34,8 @@ public class JigsawDepVisualizer {
         // nope
     }
 
+    // create the GraphViz output for all modules (GraphViz nodes) and the relationships (GraphVizedges)
+   
     public void createGraph() throws Exception {
         StatisticsHelper.start = StatisticsHelper.now();
 
@@ -65,8 +72,8 @@ public class JigsawDepVisualizer {
             Set<ModuleReference> modRefsFromMLibDirectory = ModuleFinder.of(Paths.get(path)).findAll();
             StatisticsHelper.modTotalCounter += modRefsFromMLibDirectory.size();
     
-            long numModulesFound = _findModulesHelper(allMods, modRefsFromMLibDirectory);
-            StatisticsHelper.modCounter+= numModulesFound; 
+            long numModulesFound         = _findModulesHelper(allMods, modRefsFromMLibDirectory);
+            StatisticsHelper.modCounter += numModulesFound; 
         }
     }
 
@@ -79,8 +86,8 @@ public class JigsawDepVisualizer {
         StatisticsHelper.modSystemTotalCounter += modRefsFromSystem.size();
 
         long numModulesFound = _findModulesHelper(allModDescs, modRefsFromSystem);
-        StatisticsHelper.modCounter+= numModulesFound; 
-        StatisticsHelper.modSystemCounter+= numModulesFound;
+        StatisticsHelper.modCounter       += numModulesFound; 
+        StatisticsHelper.modSystemCounter += numModulesFound;
     }
 
     private long _findModulesHelper(Set<ModuleDescriptor> allModDescs, Set<ModuleReference> modRefs) {
@@ -100,6 +107,8 @@ public class JigsawDepVisualizer {
     
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
+    // create the GraphViz edges for requires
+ 
     private void createGraphForModulesRequires(Set<ModuleDescriptor> allModDescs, ModuleDescriptor modDesc, Node modNode) {
         // check all module's requires, i.e. "first level" (but no mandated)
         modDesc.requires()
@@ -138,6 +147,8 @@ public class JigsawDepVisualizer {
     }
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
+
+    // create the GraphViz edges for requires-public (limited to 1-transitive for now)
 
     private void createGraphForModulesRequiresPublic(Set<ModuleDescriptor> allModDescs, ModuleDescriptor modDesc, Node modNode) {
         Set<String>   reqPublics = new HashSet<String>();
@@ -192,6 +203,8 @@ public class JigsawDepVisualizer {
     }
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
+
+    // create the GraphViz edges for exports-to
 
     private void createGraphForModulesExportsTo(Set<ModuleDescriptor> allModDescs, ModuleDescriptor modDesc, Node modNode) {
         Set<String> exportsTargets = new HashSet<String>();

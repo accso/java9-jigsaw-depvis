@@ -11,6 +11,11 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+  * JigsawDepPrinter
+  *   produces module information and prints it all to STDOUT
+  *   Configuration is done in a properties configuration file (same as for JigsawDepVisualizer)
+  */ 
 public class JigsawDepPrinter {
     public static void main(String[] args) throws Exception {
         // load configuration settings from properties file
@@ -49,18 +54,17 @@ public class JigsawDepPrinter {
                 .filter ((ModuleReference modRef) -> JigsawDepConfiguration.matchesFilters(modRef.descriptor().name()))
                 .forEach((ModuleReference modRef) -> { allModDescs.add(modRef.descriptor()); });
         }
-
         
 // for each module
         allModDescs.stream()
-        .sorted()
-        .forEach(mod -> {
+          .sorted()
+          .forEach(mod -> {
             
 // print the module name and version and is-automatic?
-            System.out.println("Module " + mod.toNameAndVersion() + " (automatic: " + mod.isAutomatic() + ")");
+             System.out.println("Module " + mod.toNameAndVersion() + " (automatic: " + mod.isAutomatic() + ")");
 
 // print the module's requires
-            mod.requires()
+             mod.requires()
                 .stream()
                 .filter((Requires req) -> JigsawDepConfiguration.showRequires)	     // show any requires at all?
                 .sorted()
@@ -70,7 +74,7 @@ public class JigsawDepPrinter {
                 });
 
 // print the module's exports-to
-            mod.exports()
+             mod.exports()
                 .stream()
                 .filter ((Exports exp) -> JigsawDepConfiguration.showExportsTo)		// show any exports-to at all?
                 .filter ((Exports exp) -> exp.isQualified())
