@@ -18,6 +18,7 @@ DepVis takes into account:
    * If `moda--requires-public-->modb` (blue) and `modc--requires-->moda` (blue), then also `modc--requires-->modb` (green). Note that this is currently limited to 1-transitivity.
 
 Further hints:
+
 1. DepVis can be configured, see section below.
 2. A legend is written in the top left corner. As this unfortunately flips the whole graph, this is done as a separate graph.
 3. A helper printer tool is also included which prints the relationship to STDOUT. 
@@ -88,6 +89,7 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 5. Include hash information of a module
 6. Currently, DepVis shows modules from the Observable modules (module path and system modules). Allow to show modules from a Configuration.
 7. Allow to configure colors, line styles etc. from outside (currently one needs to change Java class depvis.GraphVizHelper and recompile).
+8. Adding a GraphViz legend seems only possible with `rankdir=LR`. This flips the whole graph as it cannot be done in a subgraph only. Any way to get around this?
 
 ### Acknowledgments
 Thx to the GraphViz team (http://www.graphviz.org) for this magic tool!
