@@ -6,8 +6,8 @@ Written by [Martin Lehmann](https://github.com/MartinLehmann1971), [Kristine Sch
 Version 0.1
 
 ### What is this about?
-DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in [Project Jigsaw](http://openjdk.java.net/projects/jigsaw/) by [JSR 376](https://www.jcp.org/en/jsr/detail?id=376) and [JEP 261](http://openjdk.java.net/jeps/261). DepVis produces a [GraphViz](www.graphviz.org) output file (DOT file)
-which can be rendered with GraphViz in a separate step.
+DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in [Project Jigsaw](http://openjdk.java.net/projects/jigsaw/) by [JSR 376](https://www.jcp.org/en/jsr/detail?id=376) and [JEP 261](http://openjdk.java.net/jeps/261). 
+DepVis produces a [GraphViz](http://www.graphviz.org) output file (DOT file) which can be rendered with GraphViz in a separate step.
 
 DepVis takes into account:
 1. Requires/Read relationships (currently visualized as a blue arrow)
