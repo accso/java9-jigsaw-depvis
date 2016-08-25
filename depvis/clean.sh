@@ -1,8 +1,8 @@
 . ./env.sh
 
 if [ ! "${DEPVIS_MOD_PATH}" == "" ]; then
-rm -rf ${DEPVIS_MOD_PATH}/*
-mkdir -p ${DEPVIS_MOD_PATH}
+rm -rf ${DEPVIS_MOD_PATH}/depvis/*
+mkdir -p ${DEPVIS_MOD_PATH}/depvis
 fi
 
 if [ ! "${DEPVIS_MODULE_PATH}" == "" ]; then
