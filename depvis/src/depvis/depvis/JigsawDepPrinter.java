@@ -76,6 +76,16 @@ public class JigsawDepPrinter {
                             ((req.modifiers().isEmpty()) ? "" : " "+req.modifiers().toString()));
                 });
 
+// print the module's exports
+             mod.exports()
+                .stream()
+                .filter ((Exports exp) -> JigsawDepConfiguration.showExports)     // show any exports at all?
+                .filter ((Exports exp) -> ! exp.isQualified())
+                .sorted(Comparator.comparing(Exports::source)) // unfortunately, Exports does not implement Comparable :-(
+                .forEach((Exports exp) -> {
+                    System.out.println("  exports " + exp.source());
+                });
+
 // print the module's exports-to
              mod.exports()
                 .stream()
