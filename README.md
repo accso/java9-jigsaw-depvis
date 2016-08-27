@@ -5,6 +5,8 @@ Written by [Martin Lehmann](https://github.com/MartinLehmann1971), [Kristine Sch
 
 Version 0.1
 
+see https://github.com/accso/java9-jigsaw-depvis
+
 ### What is this about?
 DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in 
 [Project Jigsaw](http://openjdk.java.net/projects/jigsaw/) by [JSR 376]
@@ -12,7 +14,7 @@ DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in
 DepVis produces a [GraphViz](http://www.graphviz.org) output file (DOT file) which can be rendered with GraphViz in a separate step.
 
 Result looks like this (in this case all Java 9 system modules (build b127) are visualized with all relationships):
-![Java 9 System Modules](/Sample-J9SystemModules.png)
+![Java 9 System Modules](Sample-J9SystemModules.png)
 
 DepVis takes into account:
 
@@ -28,6 +30,10 @@ Further hints:
 1. DepVis can be configured, see section below.
 2. A legend is written in the top left corner. As this unfortunately flips the whole graph, this is done as a separate graph.
 3. A helper printer tool is also included which prints the relationship to STDOUT. 
+
+Current visualization 
+
+![Legend] (legend.png)
 
 ### Setup
 1. Clone this repo.
@@ -97,6 +103,9 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 - [ ] Currently, DepVis only shows modules from the Observable Modules (= module path and system modules). Also allow to show modules from a Configuration.
 - [ ] Allow to configure colors, line styles etc. from outside (currently one needs to change Java class depvis.GraphVizHelper.java and recompile).
 - [ ] Adding a GraphViz legend seems only possible with `rankdir=LR`. This settings then flips the whole graph (as it cannot be done in a subgraph only). Any way to get around this?
+
+### Related projects
+Jigsaw examples, see https://github.com/accso/java9-jigsaw-examples : Java 9 Jigsaw modules example suite
 
 ### Acknowledgments
 Thx to the GraphViz team (http://www.graphviz.org) for this magic tool!
