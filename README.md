@@ -33,9 +33,10 @@ Further hints:
 1. Clone this repo.
 2. Install a Java 9 JDK with Jigsaw support. DepVis has been tested with b127 as of July 2016.
 3. Install GraphViz 2.38.
-4. Edit file `env.sh` to configure `JAVA_HOME` and `GRAPHVIZ_HOME` (see TODO markers)
-5. Call `clean.sh`, `compile.sh` and `run-vis.sh` (or `all.sh` for all in one step).
-6. Output is `moduledependencies.dot` and `moduledependencies.png` (and a second file pair `...with-legend`).
+4. If running on Windows, install a bash, like for example [Babun](https://babun.github.io/)
+5. Edit file `env.sh` to configure `JAVA_HOME` and `GRAPHVIZ_HOME` (see TODO markers)
+6. Call `clean.sh`, `compile.sh` and `run-vis.sh` (or `all.sh` for all in one step).
+7. Output is `moduledependencies.dot` and `moduledependencies.png` (and a second file pair `...with-legend`).
 
 ### Configuration
 DepVis can be configured in a configuration properties file (see depvis.properties) as follows:
