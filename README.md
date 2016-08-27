@@ -16,8 +16,7 @@ DepVis produces a [GraphViz](http://www.graphviz.org) output file (DOT file) whi
 Result looks like this (in this case all Java 9 system modules (build b127) are visualized with all relationships):
 ![Java 9 System Modules](Sample-J9SystemModules.png)
 
-DepVis takes into account:
-
+#### DepVis takes into account:
 1. Requires/Read relationships (currently visualized as a blue arrow)
    * requires mandated to `java.base` (dashed blue arrow)
    * requires public (blue arrow)
@@ -25,14 +24,12 @@ DepVis takes into account:
 3. Requires public transitivity (green arrow)
    * If `moda--requires-public-->modb` (blue) and `modc--requires-->moda` (blue), then also `modc--requires-->modb` (green). Note that this is currently limited to 1-transitivity.
 
-Further hints:
-
+#### Further hints:
 1. DepVis can be configured, see section below.
 2. A legend is written in the top left corner. As this unfortunately flips the whole graph, this is done as a separate graph.
 3. A helper printer tool is also included which prints the relationship to STDOUT. 
 
-Current visualization 
-
+#### Legend
 ![Legend] (legend.png)
 
 ### Setup
