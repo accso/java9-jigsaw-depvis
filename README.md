@@ -95,11 +95,13 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 - [ ] Include n-transitivity for requires-public
 - [ ] Allow filtering of individual relationships (black/white listing)
 - [ ] Include uses/provides relationships
-- [ ] Include a module's package names
+- [ ] Include the module's package names
 - [ ] Include a module's hash value
-- [ ] Currently, DepVis only shows modules from the Observable Modules (= module path and system modules). Also allow to show modules from a Configuration.
-- [ ] Allow to configure colors, line styles etc. from outside (currently one needs to change Java class depvis.GraphVizHelper.java and recompile).
+- [ ] Currently, DepVis only shows modules from the Observable Modules (= module path and system modules). Alternatively allow to show modules from a Configuration.
+- [ ] Allow to configure colors, edge styles, node styles/shapes etc. via config file from outside (currently one needs to change Java class depvis.GraphVizHelper.java and recompile).
 - [ ] Adding a GraphViz legend seems only possible with `rankdir=LR`. This settings then flips the whole graph (as it cannot be done in a subgraph only). Any way to get around this?
+- [ ] Write the package name(s) to an exports-to edge
+- [ ] Layouting: Any text added as label to an edge should be visualized "closely"
 
 ### Related projects
 Jigsaw examples, see https://github.com/accso/java9-jigsaw-examples : Java 9 Jigsaw modules example suite
