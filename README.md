@@ -102,6 +102,7 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 - [ ] Adding a GraphViz legend seems only possible with `rankdir=LR`. This settings then flips the whole graph (as it cannot be done in a subgraph only). Any way to get around this?
 - [ ] Write the package name(s) to an exports-to edge
 - [ ] Layouting: Any text added as label to an edge should be visualized "closely"
+- [ ] Update to newest beta (b134 as the time of writing)
 
 ### Related projects
 Jigsaw examples, see https://github.com/accso/java9-jigsaw-examples : Java 9 Jigsaw modules example suite
