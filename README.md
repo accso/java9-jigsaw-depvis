@@ -104,6 +104,14 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 - [ ] Layouting: Any text added as label to an edge should be visualized "closely"
 - [ ] Update to newest JDK9 beta (b134 as the time of writing)
 
+### Latest changes
+#### Migration to b136
+Some CLI options changed:
+-modulesourcepath  -->  --module-source-path
+-addmods           -->  --add-modules
+-mp                -->  --module-path
+- [ ] The keyword  "requires public" in the module-info is now "requires transitive". 
+
 ### Related projects
 Jigsaw examples, see https://github.com/accso/java9-jigsaw-examples : Java 9 Jigsaw modules example suite
 
