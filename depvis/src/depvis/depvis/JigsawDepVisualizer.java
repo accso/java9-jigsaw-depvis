@@ -171,7 +171,7 @@ public class JigsawDepVisualizer {
                         req1ModDesc.requires()
                             .stream()
                             // use any if requires-public
-                            .filter  (req2 -> req2.modifiers().contains(Modifier.PUBLIC))
+                            .filter  (req2 -> req2.modifiers().contains(Modifier.TRANSITIVE))
                             .forEach (req2 -> {
                                 StatisticsHelper.reqPublicTotalCounter++;
             
