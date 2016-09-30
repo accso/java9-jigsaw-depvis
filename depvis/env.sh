@@ -1,12 +1,8 @@
 # DepVis environment settings
 
 # configure paths here
-#JAVA_HOME=TODO/path/to/java/home/goes/here
-#GRAPHVIZ_HOME=TODO/path/to/graphviz2.38/home/goes/here
-# JAVA_HOME=/u/Common_Env/jdk/jdk1.9.0_ea-b127-x64
-JAVA_HOME=/u/Common_Env/jdk/jdk1.9.0_ea-b136-x64
-GRAPHVIZ_HOME=/u/Common_Env/graphviz/graphviz-2.38
-
+JAVA_HOME=TODO/path/to/java/home/goes/here
+GRAPHVIZ_HOME=TODO/path/to/graphviz2.38/home/goes/here
 
 # ---------------------------------------------------------
 # no need to change anything beyond this line
