@@ -13,7 +13,7 @@ DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in
 (https://www.jcp.org/en/jsr/detail?id=376) and [JEP 261](http://openjdk.java.net/jeps/261). 
 DepVis produces a [GraphViz](http://www.graphviz.org) output file (DOT file) which can be rendered with GraphViz in a separate step.
 
-Result looks like this (in this case all Java 9 system modules (build b136) are visualized with all relationships):
+Result looks like this (in this case all Java 9 system modules (build b138) are visualized with all relationships):
 ![Java 9 System Modules](Sample-J9SystemModules.png)
 
 #### DepVis takes into account:
@@ -34,7 +34,7 @@ Result looks like this (in this case all Java 9 system modules (build b136) are 
 
 ### Setup
 1. Clone this repo.
-2. Install a Java 9 JDK with Jigsaw support. DepVis has been tested with b136 as of Sept 20th 2016.
+2. Install a Java 9 JDK with Jigsaw support. DepVis has been tested with b138 as of Sept 2016.
 3. Install GraphViz 2.38.
 4. If running on Windows, install a bash, like for example [Babun](https://babun.github.io/)
 5. Edit file `env.sh` to configure `JAVA_HOME` and `GRAPHVIZ_HOME` (see TODO markers)
@@ -105,7 +105,7 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 - [ ] Update to newest JDK9 beta (b134 as the time of writing)
 
 ### Latest changes
-#### Migration to b136
+#### Migration to b138
 Some CLI options changed:
 -modulesourcepath  -->  --module-source-path
 -addmods           -->  --add-modules
