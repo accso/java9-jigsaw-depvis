@@ -53,10 +53,10 @@ public class JigsawDepVisualizer {
             GraphVizHelper.graph.nodeWith(GraphVizHelper.getNodeStyle(modDesc)).node(modNode);
 
             // create all types of graph connections between nodes 
-            //     note : this might add more nodes (nodes for targets of requires, requires public, exports to)
-            createGraphForModulesRequires       (allModDescs, modDesc, modNode);
-            createGraphForModulesRequiresPublic (allModDescs, modDesc, modNode);
-            createGraphForModulesExportsTo      (allModDescs, modDesc, modNode);
+            //     note : this might add more nodes (nodes for targets of requires, requires transitive, exports to)
+            createGraphForModulesRequires           (allModDescs, modDesc, modNode);
+            createGraphForModulesRequiresTransitive (allModDescs, modDesc, modNode);
+            createGraphForModulesExportsTo          (allModDescs, modDesc, modNode);
         }
 
         GraphVizHelper.writeGraphToFile();
@@ -151,16 +151,16 @@ public class JigsawDepVisualizer {
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
-    // create the GraphViz edges for requires-public (limited to 1-transitive for now)
+    // create the GraphViz edges for requires-transitive (limited to 1-transitive for now)
 
-    private void createGraphForModulesRequiresPublic(Set<ModuleDescriptor> allModDescs, ModuleDescriptor modDesc, Node modNode) {
-        Set<String>   reqPublics = new HashSet<String>();
-        HashMap<String,ArrayList<String>> modNamesWhichHaveReq2AsPublic = new HashMap<String,ArrayList<String>>();
+    private void createGraphForModulesRequiresTransitive(Set<ModuleDescriptor> allModDescs, ModuleDescriptor modDesc, Node modNode) {
+        Set<String>   reqTransitives = new HashSet<String>();
+        HashMap<String,ArrayList<String>> modNamesWhichHaveReq2AsTransitive = new HashMap<String,ArrayList<String>>();
 
         // check all module's requires, i.e. "first level"
         modDesc.requires()
             .stream()
-            .filter (req -> JigsawDepConfiguration.showRequiresPublic)		// show any requires-public at all?
+            .filter (req -> JigsawDepConfiguration.showRequiresTransitive)		// show any requires-transitive at all?
             .forEach(req1 -> {
                 // for each of the requires, search for the module (unfortunately the Requires class only holds the module's name)
                 allModDescs
@@ -170,38 +170,38 @@ public class JigsawDepVisualizer {
                         // now check of this module's requires (2nd level) 
                         req1ModDesc.requires()
                             .stream()
-                            // use any if requires-public
+                            // use any if requires-transitive
                             .filter  (req2 -> req2.modifiers().contains(Modifier.TRANSITIVE))
                             .forEach (req2 -> {
-                                StatisticsHelper.reqPublicTotalCounter++;
+                                StatisticsHelper.reqTransitiveTotalCounter++;
             
-                                // and save the name of this requires-public's target module
-                                reqPublics.add(req2.name());
+                                // and save the name of this requires-transitive's target module
+                                reqTransitives.add(req2.name());
             
                                 // also keep the name of the "middle" module so that we can add its name as a label
-                                ArrayList<String> modsWhichHaveReq2AsPublic = new ArrayList<String>();
-                                if (modNamesWhichHaveReq2AsPublic.get(req2.name()) != null) {
-                                    modsWhichHaveReq2AsPublic = modNamesWhichHaveReq2AsPublic.get(req2.name());
+                                ArrayList<String> modsWhichHaveReq2AsTransitive = new ArrayList<String>();
+                                if (modNamesWhichHaveReq2AsTransitive.get(req2.name()) != null) {
+                                    modsWhichHaveReq2AsTransitive = modNamesWhichHaveReq2AsTransitive.get(req2.name());
                                 }
-                                modsWhichHaveReq2AsPublic.add(req1.name());
-                                modNamesWhichHaveReq2AsPublic.put(req2.name(), modsWhichHaveReq2AsPublic);
+                                modsWhichHaveReq2AsTransitive.add(req1.name());
+                                modNamesWhichHaveReq2AsTransitive.put(req2.name(), modsWhichHaveReq2AsTransitive);
                             });
                     });
             });
 
-        // for all (non-duplicate) requires-public connections
-        reqPublics
+        // for all (non-duplicate) requires-transitive connections
+        reqTransitives
             .stream()
-            .filter  (req -> JigsawDepConfiguration.showRequiresPublic)		// show any requires-public at all?
-            .filter  (reqPublicTargetName -> JigsawDepConfiguration.matchesFilters(reqPublicTargetName))
-            .forEach (reqPublicTargetName -> {
-                StatisticsHelper.reqPublicCounter++;
+            .filter  (req -> JigsawDepConfiguration.showRequiresTransitive)		// show any requires-transitive at all?
+            .filter  (reqTransitiveTargetName -> JigsawDepConfiguration.matchesFilters(reqTransitiveTargetName))
+            .forEach (reqTransitiveTargetName -> {
+                StatisticsHelper.reqTransitiveCounter++;
 
-                ModuleDescriptor targetModDesc = getModuleDescriptorFromName(allModDescs, reqPublicTargetName).orElse(null);
+                ModuleDescriptor targetModDesc = getModuleDescriptorFromName(allModDescs, reqTransitiveTargetName).orElse(null);
                 GraphVizHelper.graph.fromToNode(
                          modNode,                       GraphVizHelper.getNodeStyle(modDesc),
-                         new Node(reqPublicTargetName), GraphVizHelper.getNodeStyle(targetModDesc),
-                         modNamesWhichHaveReq2AsPublic.get(reqPublicTargetName).toString(), GraphVizHelper.reqPublicStyle);
+                         new Node(reqTransitiveTargetName), GraphVizHelper.getNodeStyle(targetModDesc),
+                         modNamesWhichHaveReq2AsTransitive.get(reqTransitiveTargetName).toString(), GraphVizHelper.reqPublicStyle);
             });
     }
 

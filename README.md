@@ -1,9 +1,9 @@
 # DepVis (Java 9 Jigsaw Dependency Visualizer)
 
 ### Info
-Written by [Martin Lehmann](https://github.com/MartinLehmann1971), [Kristine Schaal](https://github.com/kristines) and Rüdiger Grammes.
+Written by [Martin Lehmann](https://github.com/MartinLehmann1971), [Kristine Schaal](https://github.com/kristines) and [Rüdiger Grammes](https://github.com/rgrammes) 
 
-Version 0.1
+Version 0.2
 
 see https://github.com/accso/java9-jigsaw-depvis
 
@@ -13,16 +13,16 @@ DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in
 (https://www.jcp.org/en/jsr/detail?id=376) and [JEP 261](http://openjdk.java.net/jeps/261). 
 DepVis produces a [GraphViz](http://www.graphviz.org) output file (DOT file) which can be rendered with GraphViz in a separate step.
 
-Result looks like this (in this case all Java 9 system modules (build b136) are visualized with all relationships):
+Result looks like this (in this case all Java 9 system modules (build b144) are visualized with all relationships, limited to modules with prefix "java.*"):
 ![Java 9 System Modules](Sample-J9SystemModules.png)
 
 #### DepVis takes into account:
 1. Requires/Read relationships (currently visualized as a blue arrow)
    * requires mandated to `java.base` (dashed blue arrow)
-   * requires public (blue arrow)
+   * requires transitive (blue arrow)
 2. Exports-To relationships (red)
-3. Requires public transitivity (green arrow)
-   * If `moda--requires-public-->modb` (blue) and `modc--requires-->moda` (blue), then also `modc--requires-->modb` (green). Note that this is currently limited to 1-transitivity.
+3. Requires transitive transitivity (green arrow)
+   * If `moda--requires-transitive-->modb` (blue) and `modc--requires-->moda` (blue), then also `modc--requires-->modb` (green). Note that this is currently limited to 1-transitivity.
 
 #### Further hints:
 1. DepVis can be configured, see section below.
@@ -71,9 +71,9 @@ DepVis can be configured in a configuration properties file (see depvis.properti
 7. `depvis.showRequiresMandated`
    * boolean 
    * want to visualize requires/reads mandated relationships?
-8. `depvis.showRequiresPublic`
+8. `depvis.showRequiresTransitive`
    * boolean 
-   * want to visualize requires/reads public relationships (1-transitive)?
+   * want to visualize requires/reads transitive relationships (1-transitive)?
 9. `depvis.showExportsTo`
    * boolean 
    * want to visualize exports-to relationships?
@@ -92,7 +92,7 @@ DepVis can be configured in a configuration properties file (see depvis.properti
 ### TODOs, LOP, Backlog, Ideas, ...
 No software is ready, ever ;-) So here are some ideas left (any other feedback very welcome!):
 
-- [ ] Include n-transitivity for requires-public
+- [ ] Include n-transitivity for requires-transitive
 - [ ] Allow filtering of individual relationships (black/white listing)
 - [ ] Include uses/provides relationships
 - [ ] Include the module's package names
@@ -102,15 +102,12 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 - [ ] Adding a GraphViz legend seems only possible with `rankdir=LR`. This settings then flips the whole graph (as it cannot be done in a subgraph only). Any way to get around this?
 - [ ] Write the package name(s) to an exports-to edge
 - [ ] Layouting: Any text added as label to an edge should be visualized "closely"
-- [ ] Update to newest JDK9 beta (b134 as the time of writing)
+- [ ] Open Modules as new module type
+- [ ] usage of "opens" in module-info
 
 ### Latest changes
-#### Migration to b136
-Some CLI options changed:
--modulesourcepath  -->  --module-source-path
--addmods           -->  --add-modules
--mp                -->  --module-path
-- [ ] The keyword  "requires public" in the module-info is now "requires transitive". 
+#### Migration to b144
+- "requires public" in the module-info is now "requires transitive".
 
 ### Related projects
 Jigsaw examples, see https://github.com/accso/java9-jigsaw-examples : Java 9 Jigsaw modules example suite

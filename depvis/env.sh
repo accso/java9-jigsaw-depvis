@@ -1,15 +1,15 @@
 # DepVis environment settings
 
 # configure paths here
-JAVA_HOME=TODO/path/to/java/home/goes/here
-GRAPHVIZ_HOME=TODO/path/to/graphviz2.38/home/goes/here
+JAVA_HOME=/a/JDK/jdk1.9.0_ea-b144-x64_20161111_build5709
+GRAPHVIZ_HOME=/a/GraphViz/graphviz-2.38 
 
 # ---------------------------------------------------------
 # no need to change anything beyond this line
 
 PATH=$JAVA_HOME/bin:$PATH 
 
-DEPVIS_VERSION=0.1
+DEPVIS_VERSION=0.2
 DEPVIS_JAR=depvis-${DEPVIS_VERSION}.jar
 
 DEPVIS_MOD_PATH=./mods

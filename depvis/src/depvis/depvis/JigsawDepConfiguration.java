@@ -25,11 +25,11 @@ class JigsawDepConfiguration {
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
-    static boolean showRequires = true;         // do we want to visualize requires?
-    static boolean showRequiresMandated = true;	// do we want to visualize requires mandated?
-    static boolean showRequiresPublic = true;   // do we want to visualize requires public?
-    static boolean showExports   = true;        // do we want to print exports? (will not be visualized as there is no direction)
-    static boolean showExportsTo = true;        // do we want to visualize exports-to?
+    static boolean showRequires = true;           // do we want to visualize requires?
+    static boolean showRequiresMandated = true;   // do we want to visualize requires mandated?
+    static boolean showRequiresTransitive = true; // do we want to visualize requires transitive?
+    static boolean showExports   = true;          // do we want to print exports? (will not be visualized as there is no direction)
+    static boolean showExportsTo = true;          // do we want to visualize exports-to?
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -91,11 +91,11 @@ class JigsawDepConfiguration {
         useModulePath        = Boolean.valueOf(propsFromFile.getProperty("depvis.useModulePath",    Boolean.toString(useModulePath)));
         modulePath           = propsFromFile.getProperty("depvis.modulePath", modulePath);
 
-        showRequires         = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequires",         Boolean.toString(showRequires)));
-        showRequiresMandated = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresMandated", Boolean.toString(showRequiresMandated)));
-        showRequiresPublic   = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresPublic",   Boolean.toString(showRequiresPublic)));
-        showExports          = Boolean.valueOf(propsFromFile.getProperty("depvis.showExports",          Boolean.toString(showExports)));
-        showExportsTo        = Boolean.valueOf(propsFromFile.getProperty("depvis.showExportsTo",        Boolean.toString(showExportsTo)));
+        showRequires           = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequires",           Boolean.toString(showRequires)));
+        showRequiresMandated   = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresMandated",   Boolean.toString(showRequiresMandated)));
+        showRequiresTransitive = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresTransitive", Boolean.toString(showRequiresTransitive)));
+        showExports            = Boolean.valueOf(propsFromFile.getProperty("depvis.showExports",            Boolean.toString(showExports)));
+        showExportsTo          = Boolean.valueOf(propsFromFile.getProperty("depvis.showExportsTo",          Boolean.toString(showExportsTo)));
 
         outputFileName       = propsFromFile.getProperty("depvis.outputFileName", outputFileName);
         showLegend           = Boolean.valueOf(propsFromFile.getProperty("depvis.showLegend", Boolean.toString(showLegend)));

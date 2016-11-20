@@ -3,6 +3,6 @@
 	<classpathentry excluding="lib/kohsuke/|graphviz/|lib/" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/graphviz-api"/>
-	<classpathentry kind="lib" path="../lib/graphvizapi-1.2.1.jar"/>
+	<classpathentry kind="lib" path="J:/github-java9-jigsaw-depvis/depvis/amlib/graphviz-api-1.2.1.jar"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>

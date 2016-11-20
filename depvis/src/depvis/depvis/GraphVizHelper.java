@@ -106,7 +106,7 @@ class GraphVizHelper {
         sb.append("  key [label=<<table border=\"0\" cellpadding=\"2\" cellspacing=\"0\" cellborder=\"0\">\n");
         sb.append("    <tr><td align=\"right\" port=\"i1\">requires</td></tr>\n");
         sb.append("    <tr><td align=\"right\" port=\"i2\">requires (mandated)</td></tr>\n");
-        sb.append("    <tr><td align=\"right\" port=\"i3\">requires public</td></tr>\n");
+        sb.append("    <tr><td align=\"right\" port=\"i3\">requires transitive</td></tr>\n");
         sb.append("    <tr><td align=\"right\" port=\"i4\">exports to</td></tr>\n");
         sb.append("    </table>>,fontname=\"Consolas\"]\n");
         sb.append("  key2 [label=<<table border=\"0\" cellpadding=\"2\" cellspacing=\"0\" cellborder=\"0\">\n");
