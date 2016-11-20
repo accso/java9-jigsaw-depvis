@@ -14,7 +14,7 @@ DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in
 DepVis produces a [GraphViz](http://www.graphviz.org) output file (DOT file) which can be rendered with GraphViz in a separate step.
 
 Result looks like this (in this case all Java 9 system modules (build b144) are visualized with all relationships, limited to modules with prefix "java.*"):
-![Java 9 System Modules](Sample-J9SystemModules.png)
+![Java 9 System Modules](Sample-J9SystemModules.jpg)
 
 #### DepVis takes into account:
 1. Requires/Read relationships (currently visualized as a blue arrow)
