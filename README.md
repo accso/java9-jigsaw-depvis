@@ -13,11 +13,7 @@ DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in
 (https://www.jcp.org/en/jsr/detail?id=376) and [JEP 261](http://openjdk.java.net/jeps/261). 
 DepVis produces a [GraphViz](http://www.graphviz.org) output file (DOT file) which can be rendered with GraphViz in a separate step.
 
-<<<<<<< HEAD
 Result looks like this (in this case all Java 9 system modules (build b144) are visualized with all relationships, limited to modules with prefix "java.*"):
-=======
-Result looks like this (in this case all Java 9 system modules (build b138) are visualized with all relationships):
->>>>>>> b8542ae894338b3a863bee85cd255f9bf88cb4b2
 ![Java 9 System Modules](Sample-J9SystemModules.png)
 
 #### DepVis takes into account:
@@ -110,17 +106,7 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 - [ ] usage of "opens" in module-info
 
 ### Latest changes
-<<<<<<< HEAD
-#### Migration to b144
 - "requires public" in the module-info is now "requires transitive".
-=======
-#### Migration to b138
-Some CLI options changed:
--modulesourcepath  -->  --module-source-path
--addmods           -->  --add-modules
--mp                -->  --module-path
-- [ ] The keyword  "requires public" in the module-info is now "requires transitive". 
->>>>>>> b8542ae894338b3a863bee85cd255f9bf88cb4b2
 
 ### Related projects
 Jigsaw examples, see https://github.com/accso/java9-jigsaw-examples : Java 9 Jigsaw modules example suite
