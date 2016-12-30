@@ -13,7 +13,7 @@ DepVis visualizes dependencies of Java 9 Jigsaw modules as defined in
 (https://www.jcp.org/en/jsr/detail?id=376) and [JEP 261](http://openjdk.java.net/jeps/261). 
 DepVis produces a [GraphViz](http://www.graphviz.org) output file (DOT file) which can be rendered with GraphViz in a separate step.
 
-Result looks like this (in this case all Java 9 system modules (build b144) are visualized with all relationships, limited to modules with prefix "java.*"):
+Result looks like this (in this case all Java 9 system modules (build b148) are visualized with all relationships, limited to modules with prefix "java.*"):
 ![Java 9 System Modules](Sample-J9SystemModules.png)
 
 #### DepVis takes into account:
@@ -34,7 +34,7 @@ Result looks like this (in this case all Java 9 system modules (build b144) are 
 
 ### Setup
 1. Clone this repo.
-2. Install a Java 9 JDK with Jigsaw support. DepVis has been tested with b144 as of November 2016.
+2. Install a Java 9 JDK with Jigsaw support. DepVis has been tested with b148 as of December 2016.
 3. Install GraphViz 2.38.
 4. If running on Windows, install a bash, like for example [Babun](https://babun.github.io/)
 5. Edit file `env.sh` to configure `JAVA_HOME` and `GRAPHVIZ_HOME` (see TODO markers)
@@ -92,6 +92,7 @@ DepVis can be configured in a configuration properties file (see depvis.properti
 ### TODOs, LOP, Backlog, Ideas, ...
 No software is ready, ever ;-) So here are some ideas left (any other feedback very welcome!):
 
+- [ ] Show requires transitive dependencies with a different line style
 - [ ] Include n-transitivity for requires-transitive
 - [ ] Allow filtering of individual relationships (black/white listing)
 - [ ] Include uses/provides relationships
