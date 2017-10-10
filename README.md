@@ -30,7 +30,7 @@ Result looks like this (in this case all Java 9 system modules (build 181) are v
 3. A helper printer tool is also included which prints the relationship to STDOUT. 
 
 #### Legend
-![Legend] (legend.jpg)
+![Legend](legend.jpg)
 
 ### Setup
 1. Clone this repo.
