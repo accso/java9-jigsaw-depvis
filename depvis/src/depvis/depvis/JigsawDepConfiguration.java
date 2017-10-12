@@ -33,8 +33,8 @@ class JigsawDepConfiguration {
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
-    static String  outputFileName = "j:/src/depvis/moduledependencies.dot";		// path&name of the graphviz output file
-    static boolean showLegend = true;											                    // show a legend?
+    static String  outputFileName = "./moduledependencies.dot";					  // path&name of the graphviz output file
+    static boolean showLegend = true;											  // show a legend?
     static String  diagramTitle = "Java 9, Jigsaw, Module Dependencies";		  // title of the diagram (in the legend)
 
     // ---------------------------------------------------------------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 ### Info
 Written by [Martin Lehmann](https://github.com/MartinLehmann1971), [Kristine Schaal](https://github.com/kristines) and [Rüdiger Grammes](https://github.com/rgrammes) 
 
-Version 0.2
+Version 0.3
 
 see https://github.com/accso/java9-jigsaw-depvis
 
@@ -107,6 +107,7 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 - [ ] usage of "opens" in module-info
 
 ### Latest changes
+- Migrated to Java 9 final release (181), migrated to Eclipse 4.7.1a
 - "requires public" in the module-info is now "requires transitive".
 
 ### Related projects
