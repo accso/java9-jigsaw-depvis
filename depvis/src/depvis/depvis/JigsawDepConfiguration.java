@@ -28,11 +28,25 @@ class JigsawDepConfiguration {
     static boolean showRequires = true;           // do we want to visualize requires?
     static boolean showRequiresMandated = true;   // do we want to visualize requires mandated?
     static boolean showRequiresTransitive = true; // do we want to visualize requires transitive?
+    static boolean showRequiresStatic = true;     // do we want to visualize requires static?
     static boolean showExports   = true;          // do we want to print exports? (will not be visualized as there is no direction)
     static boolean showExportsTo = true;          // do we want to visualize exports-to?
+    static boolean showOpens = true;              // do we want to print opens? (will not be visualized as there is no direction)
+    static boolean showOpensTo = true;            // do we want to visualize opens-to?
+    static boolean showUses = true;               // do we want to print uses? (will not be visualized as there is no direction)
+    static boolean showProvides = true;           // do we want to print provides? (will not be visualized as there is no direction)
+    static boolean showContains = true;           // do we want to print contains, i.e. concealed packages? (will not be visualized as there is no direction)
+    static boolean showMainClass = true;          // do we want to print the main class? (will not be visualized as there is no direction)
 
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
+    // Printer options
+    static boolean prefixWithModuleName = true;	  // prefix each line with the module name & version (for easier grep's)
+
+    // ---------------------------------------------------------------------------------------------------------------------------------------
+
+    // Visualizer options
+    
     static String  outputFileName = "./moduledependencies.dot";					  // path&name of the graphviz output file
     static boolean showLegend = true;											  // show a legend?
     static String  diagramTitle = "Java 9, Jigsaw, Module Dependencies";		  // title of the diagram (in the legend)
@@ -76,29 +90,41 @@ class JigsawDepConfiguration {
             _includeFilter = new ArrayList<String>();
             String[] tokens = propsFromFile.getProperty("depvis.includeFilter", "").split(",");
             for (String token: tokens) {
-                _includeFilter.add(token);
+                _includeFilter.add(token.trim());
             }
         }
         if (propsFromFile.containsKey("depvis.excludeFilter")) {
             _excludeFilter = new ArrayList<String>();
             String[] tokens = propsFromFile.getProperty("depvis.excludeFilter", "").split(",");
             for (String token: tokens) {
-                _excludeFilter.add(token);
+                _excludeFilter.add(token.trim());
             }
         }
 
-        useSystemModules     = Boolean.valueOf(propsFromFile.getProperty("depvis.useSystemModules", Boolean.toString(useSystemModules)));
-        useModulePath        = Boolean.valueOf(propsFromFile.getProperty("depvis.useModulePath",    Boolean.toString(useModulePath)));
-        modulePath           = propsFromFile.getProperty("depvis.modulePath", modulePath);
+        useSystemModules       = Boolean.valueOf(propsFromFile.getProperty("depvis.useSystemModules", Boolean.toString(useSystemModules)));
+        useModulePath          = Boolean.valueOf(propsFromFile.getProperty("depvis.useModulePath",    Boolean.toString(useModulePath)));
+        modulePath             = propsFromFile.getProperty("depvis.modulePath", modulePath);
 
         showRequires           = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequires",           Boolean.toString(showRequires)));
         showRequiresMandated   = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresMandated",   Boolean.toString(showRequiresMandated)));
         showRequiresTransitive = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresTransitive", Boolean.toString(showRequiresTransitive)));
+        showRequiresStatic     = Boolean.valueOf(propsFromFile.getProperty("depvis.showRequiresStatic",     Boolean.toString(showRequiresStatic)));
         showExports            = Boolean.valueOf(propsFromFile.getProperty("depvis.showExports",            Boolean.toString(showExports)));
         showExportsTo          = Boolean.valueOf(propsFromFile.getProperty("depvis.showExportsTo",          Boolean.toString(showExportsTo)));
+        showOpens              = Boolean.valueOf(propsFromFile.getProperty("depvis.showOpens",              Boolean.toString(showOpens)));
+        showOpensTo            = Boolean.valueOf(propsFromFile.getProperty("depvis.showOpensTo",            Boolean.toString(showOpensTo)));
+        showUses               = Boolean.valueOf(propsFromFile.getProperty("depvis.showUses",               Boolean.toString(showUses)));
+        showProvides           = Boolean.valueOf(propsFromFile.getProperty("depvis.showProvides",           Boolean.toString(showProvides)));
 
-        outputFileName       = propsFromFile.getProperty("depvis.outputFileName", outputFileName);
-        showLegend           = Boolean.valueOf(propsFromFile.getProperty("depvis.showLegend", Boolean.toString(showLegend)));
-        diagramTitle         = propsFromFile.getProperty("depvis.diagramTitle",  diagramTitle);
+        showContains           = Boolean.valueOf(propsFromFile.getProperty("depvis.showContains",           Boolean.toString(showContains)));
+        showMainClass          = Boolean.valueOf(propsFromFile.getProperty("depvis.showMainClass",          Boolean.toString(showMainClass)));
+
+        // Printer options
+        prefixWithModuleName   = Boolean.valueOf(propsFromFile.getProperty("depvis.prefixWithModuleName",   Boolean.toString(prefixWithModuleName)));
+        
+        // Visualizer options
+        outputFileName         = propsFromFile.getProperty("depvis.outputFileName", outputFileName);
+        showLegend             = Boolean.valueOf(propsFromFile.getProperty("depvis.showLegend", Boolean.toString(showLegend)));
+        diagramTitle           = propsFromFile.getProperty("depvis.diagramTitle",  diagramTitle);
     }
 }

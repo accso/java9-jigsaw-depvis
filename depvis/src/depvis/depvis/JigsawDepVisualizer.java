@@ -57,6 +57,7 @@ public class JigsawDepVisualizer {
             createGraphForModulesRequires           (allModDescs, modDesc, modNode);
             createGraphForModulesRequiresTransitive (allModDescs, modDesc, modNode);
             createGraphForModulesExportsTo          (allModDescs, modDesc, modNode);
+            createGraphForModulesOpensTo            (allModDescs, modDesc, modNode);
         }
 
         GraphVizHelper.writeGraphToFile();
@@ -118,7 +119,8 @@ public class JigsawDepVisualizer {
             .stream()
             .peek    (req -> { StatisticsHelper.reqTotalCounter++; })
             .filter  (req -> JigsawDepConfiguration.showRequires)					// show any requires at all?
-            .filter  (req -> !req.modifiers().contains(Modifier.MANDATED))
+            .filter  (req -> !req.modifiers().contains(Modifier.MANDATED))			// no requires mandated, as done below
+            .filter  (req -> !req.modifiers().contains(Modifier.STATIC))			// no requires static, as done below
             .filter  (req -> JigsawDepConfiguration.matchesFilters(req.name()))	    // if not filtered?
             .forEach (req -> {
                 StatisticsHelper.reqCounter++;
@@ -134,9 +136,10 @@ public class JigsawDepVisualizer {
         modDesc.requires()
             .stream()
             .filter  (req -> req.modifiers().contains(Modifier.MANDATED))
-            .peek    (req -> { StatisticsHelper.reqTotalMandatedCounter++; })
-            .filter  (req -> JigsawDepConfiguration.showRequiresMandated)			// show any requires (mandated) at all?
-            .filter  (req -> JigsawDepConfiguration.matchesFilters(req.name()))	// if not filtered?
+            .filter  (req -> !req.modifiers().contains(Modifier.STATIC))			// no requires static, as done below
+            .peek    (req -> { StatisticsHelper.reqMandatedTotalCounter++; })
+            .filter  (req -> JigsawDepConfiguration.showRequiresMandated)		    // show any requires (mandated) at all?
+            .filter  (req -> JigsawDepConfiguration.matchesFilters(req.name()))   	// if not filtered?
             .forEach (req -> { 
                 StatisticsHelper.reqCounter++; 
                 StatisticsHelper.reqMandatedCounter++;
@@ -146,6 +149,24 @@ public class JigsawDepVisualizer {
                         modNode,              GraphVizHelper.getNodeStyle(modDesc),
                         new Node(req.name()), GraphVizHelper.getNodeStyle(targetModDesc),
                         null,                 GraphVizHelper.reqMandatedStyle); 
+            });
+
+        // check all module's requires, i.e. "first level" (this time static only)
+        modDesc.requires()
+            .stream()
+            .filter  (req -> req.modifiers().contains(Modifier.STATIC))
+            .peek    (req -> { StatisticsHelper.reqStaticTotalCounter++; })
+            .filter  (req -> JigsawDepConfiguration.showRequiresStatic)		        // show any requires (static) at all?
+            .filter  (req -> JigsawDepConfiguration.matchesFilters(req.name()))  	// if not filtered?
+            .forEach (req -> { 
+                StatisticsHelper.reqCounter++; 
+                StatisticsHelper.reqStaticCounter++;
+
+                ModuleDescriptor targetModDesc = getModuleDescriptorFromName(allModDescs, req.name()).orElse(null);
+                GraphVizHelper.graph.fromToNode(
+                        modNode,              GraphVizHelper.getNodeStyle(modDesc),
+                        new Node(req.name()), GraphVizHelper.getNodeStyle(targetModDesc),
+                        null,                 GraphVizHelper.reqStaticStyle); 
             });
     }
 
@@ -201,7 +222,7 @@ public class JigsawDepVisualizer {
                 GraphVizHelper.graph.fromToNode(
                          modNode,                       GraphVizHelper.getNodeStyle(modDesc),
                          new Node(reqTransitiveTargetName), GraphVizHelper.getNodeStyle(targetModDesc),
-                         modNamesWhichHaveReq2AsTransitive.get(reqTransitiveTargetName).toString(), GraphVizHelper.reqPublicStyle);
+                         modNamesWhichHaveReq2AsTransitive.get(reqTransitiveTargetName).toString(), GraphVizHelper.reqTransitiveStyle);
             });
     }
 
@@ -240,6 +261,44 @@ public class JigsawDepVisualizer {
                         modNode,                 GraphVizHelper.getNodeStyle(modDesc),
                         new Node(expTargetName), GraphVizHelper.getNodeStyle(targetModDesc),
                         null,                    GraphVizHelper.exportsToStyle);
+            });
+    }
+
+    // ---------------------------------------------------------------------------------------------------------------------------------------
+
+    // create the GraphViz edges for opens-to
+
+    private void createGraphForModulesOpensTo(Set<ModuleDescriptor> allModDescs, ModuleDescriptor modDesc, Node modNode) {
+        Set<String> opensTargets = new HashSet<String>();
+
+        // check all module's opens, i.e. "first level"
+        modDesc.opens()
+            .stream()
+            .filter  (open -> JigsawDepConfiguration.showOpensTo)		// show any opens-to at all?
+            .filter  (open -> open.isQualified())
+            .forEach (open -> {
+                open.targets()
+                    .stream()
+                    .forEach(opTargetName -> {
+                        StatisticsHelper.opensToTotalCounter++;
+        
+                        // add any of the opens targets to a set (needed to avoid duplicates)
+                        opensTargets.add(opTargetName);
+                    });
+            });
+
+        opensTargets
+            .stream()
+            .filter  (opTargetName -> JigsawDepConfiguration.showOpensTo)		// show any opens-to at all?
+            .filter  (opTargetName -> JigsawDepConfiguration.matchesFilters(opTargetName))
+            .forEach (opTargetName -> {
+                StatisticsHelper.opensToCounter++;
+
+                ModuleDescriptor targetModDesc = getModuleDescriptorFromName(allModDescs, opTargetName).orElse(null);
+                GraphVizHelper.graph.fromToNode(
+                        modNode,                 GraphVizHelper.getNodeStyle(modDesc),
+                        new Node(opTargetName),  GraphVizHelper.getNodeStyle(targetModDesc),
+                        null,                    GraphVizHelper.opensToStyle);
             });
     }
 }

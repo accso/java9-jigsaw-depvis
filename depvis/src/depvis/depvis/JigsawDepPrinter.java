@@ -3,13 +3,16 @@ package depvis;
 import java.io.File;
 import java.lang.module.ModuleDescriptor;
 import java.lang.module.ModuleDescriptor.Exports;
+import java.lang.module.ModuleDescriptor.Opens;
 import java.lang.module.ModuleDescriptor.Requires;
+import java.lang.module.ModuleDescriptor.Provides;
 import java.lang.module.ModuleFinder;
 import java.lang.module.ModuleReference;
 import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * DepVis visualization tool for Java 9 Jigsaw modules
@@ -18,6 +21,8 @@ import java.util.Set;
  * JigsawDepPrinter (second main class besides JigsawDepVisualizer)
  *   This printer produces module information and prints it all to STDOUT.
  *   Its configuration is done in a properties configuration file (same as for JigsawDepVisualizer)
+ *   
+ *   see also Java9 class jdk.jartool/sun.tools.jar.Main for its option "--describe-module"
  */ 
 public class JigsawDepPrinter {
     public static void main(String[] args) throws Exception {
@@ -61,40 +66,102 @@ public class JigsawDepPrinter {
 // for each module
         allModDescs.stream()
           .sorted()
-          .forEach(mod -> {
+          .forEach((ModuleDescriptor mod) -> {
             
 // print the module name and version and is-automatic?
-             System.out.println("Module " + mod.toNameAndVersion() + " (automatic: " + mod.isAutomatic() + ")");
+             System.out.println("\nModule " + mod.toNameAndVersion() + " (automatic: " + mod.isAutomatic() + ")");
 
-// print the module's requires
+// print the module's requires (and all it's qualifiers)
              mod.requires()
                 .stream()
                 .filter((Requires req) -> JigsawDepConfiguration.showRequires)	     // show any requires at all?
                 .sorted()
                 .forEach((Requires req) -> {
-                    System.out.println("  requires " + req.name() + 
-                            ((req.modifiers().isEmpty()) ? "" : " "+req.modifiers().toString()));
+                    System.out.println((JigsawDepConfiguration.prefixWithModuleName ? mod.toNameAndVersion() : " ") 
+                    		+ " requires " + req.name()
+                            + ((req.modifiers().isEmpty()) ? "" : " "+req.modifiers().toString()));
                 });
 
 // print the module's exports
              mod.exports()
                 .stream()
+                .sorted(Comparator.comparing(Exports::source))
                 .filter ((Exports exp) -> JigsawDepConfiguration.showExports)     // show any exports at all?
                 .filter ((Exports exp) -> ! exp.isQualified())
-                .sorted(Comparator.comparing(Exports::source)) // unfortunately, Exports does not implement Comparable :-(
                 .forEach((Exports exp) -> {
-                    System.out.println("  exports " + exp.source());
+                    System.out.println((JigsawDepConfiguration.prefixWithModuleName ? mod.toNameAndVersion() : " ")
+                    		+ " exports " + exp.source());
                 });
 
 // print the module's exports-to
              mod.exports()
                 .stream()
+                .sorted(Comparator.comparing(Exports::source))
                 .filter ((Exports exp) -> JigsawDepConfiguration.showExportsTo)		// show any exports-to at all?
                 .filter ((Exports exp) -> exp.isQualified())
-                .sorted(Comparator.comparing(Exports::source)) // unfortunately, Exports does not implement Comparable :-(
                 .forEach((Exports exp) -> {
-                    System.out.println("  exports " + exp.source() + " to " + exp.targets().toString());
+                    System.out.println((JigsawDepConfiguration.prefixWithModuleName ? mod.toNameAndVersion() : " ") 
+                    		+ " exports " + exp.source() + " to " + exp.targets().toString());
                 });
-        });
+
+// print the module's open
+             mod.opens()
+                .stream()
+                .sorted(Comparator.comparing(Opens::source))
+                .filter ((Opens op) -> JigsawDepConfiguration.showOpens)		// show any opens at all?
+                .filter ((Opens op) -> ! op.isQualified())
+                .forEach((Opens op) -> {
+                    System.out.println((JigsawDepConfiguration.prefixWithModuleName ? mod.toNameAndVersion() : " ") 
+                    		+ " opens " + op.source());
+                });
+
+// print the module's exports-to
+             mod.opens()
+                .stream()
+                .sorted(Comparator.comparing(Opens::source))
+                .filter ((Opens op) -> JigsawDepConfiguration.showOpensTo)		// show any opens-to at all?
+                .filter ((Opens op) -> op.isQualified())
+                .forEach((Opens op) -> {
+                    System.out.println((JigsawDepConfiguration.prefixWithModuleName ? mod.toNameAndVersion() : " ") 
+                    		+ " opens " + op.source() + " to " + op.targets().toString());
+                });
+             
+// print the module's uses
+             mod.uses()
+                .stream()
+                .sorted()
+                .filter ((String us) -> JigsawDepConfiguration.showUses)		// show any uses at all?
+                .forEach((String us) -> {
+                    System.out.println((JigsawDepConfiguration.prefixWithModuleName ? mod.toNameAndVersion() : " ") 
+                    		+ " uses " + us);
+                });
+
+// print the module's provides
+        	mod.provides()
+	           .stream()
+	           .sorted()
+	           .filter ((Provides pr) -> JigsawDepConfiguration.showProvides)		// show any provides at all?
+	           .forEach((Provides pr) -> {
+	               System.out.println((JigsawDepConfiguration.prefixWithModuleName ? mod.toNameAndVersion() : " ") 
+	               		+ " provides " + pr.service() + " with " + pr.providers());
+	           });
+
+// print all other packages, i.e. non-exported/non-open packages
+        	if (JigsawDepConfiguration.showContains) {
+	             Set<String> concealed = new TreeSet<>(mod.packages());
+	             mod.exports().stream().map(Exports::source).forEach(concealed::remove);
+	             mod.opens().stream().map(Opens::source).forEach(concealed::remove);
+	             concealed.forEach(pkg -> 
+	             	System.out.println((JigsawDepConfiguration.prefixWithModuleName ? mod.toNameAndVersion() : " ") 
+	             				+ " contains " + pkg));
+        	}
+
+// print the main class (if any)
+        	if (JigsawDepConfiguration.showMainClass) {
+	             mod.mainClass().ifPresent(clazz -> 
+	             	System.out.println((JigsawDepConfiguration.prefixWithModuleName ? mod.toNameAndVersion() : " ") 
+	             			    + " main-class " + clazz));
+        	}
+          });
     }
 }

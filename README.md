@@ -20,9 +20,11 @@ Result looks like this (in this case all Java 9 system modules (build 181) are v
 1. Requires/Read relationships (currently visualized as a blue arrow)
    * requires mandated to `java.base` (dashed blue arrow)
    * requires transitive (blue arrow)
-2. Exports-To relationships (red)
-3. Requires transitive transitivity (green arrow)
+   * requires static (dotted blue arrow)
+2. Requires transitive transitivity (green arrow)
    * If `moda--requires-transitive-->modb` (blue) and `modc--requires-->moda` (blue), then also `modc--requires-->modb` (green). Note that this is currently limited to 1-transitivity.
+2. Exports-To relationships (red)
+3. Opens-To relationships (orange)
 
 #### Further hints:
 1. DepVis can be configured, see section below.
@@ -71,21 +73,48 @@ DepVis can be configured in a configuration properties file (see depvis.properti
 7. `depvis.showRequiresMandated`
    * boolean 
    * want to visualize requires/reads mandated relationships?
-8. `depvis.showRequiresTransitive`
+8. `depvis.showRequiresStatic`
+   * boolean 
+   * want to visualize requires/reads static relationships?
+9. `depvis.showRequiresTransitive`
    * boolean 
    * want to visualize requires/reads transitive relationships (1-transitive)?
-9. `depvis.showExportsTo`
+10. `depvis.showExports`, only needed for the Printer
+   * boolean 
+   * want to print exports?
+11. `depvis.showExportsTo`
    * boolean 
    * want to visualize exports-to relationships?
-10. `depvis.outputFileName`
+12. `depvis.showOpens`, only needed for the Printer
+   * boolean 
+   * want to print opens?
+13. `depvis.showOpensTo`
+   * boolean 
+   * want to visualize opens-to relationships?
+14. `depvis.showUses`
+   * boolean 
+   * want to print uses?
+15. `depvis.showProvided`
+   * boolean 
+   * want to print provides?
+16. `depvis.showContains`, only needed for the Printer
+   * boolean 
+   * want to print contains, i.e. all concealed packages?
+17. `depvis.showMainClass`
+   * boolean 
+   * want to print the main class?
+16. `depvis.prefixWithModuleName`, only needed for the Printer
+   * boolean 
+   * want to prefix each output line with the module name & version (for easier grep's)?
+17. `depvis.outputFileName`, only needed for the Visualizer
     * String
     * filename for the DOT output file
     * example: `/tmp/moduledependencies.dot`
-11. `depvis.showLegend`
+18. `depvis.showLegend`, only needed for the Visualizer
     * boolean 
     * want to visualize a legend plus title and timestamp?
     * if so, the graph will be flipped to LR
-12. `depvis.diagramTitle`
+19. `depvis.diagramTitle`, only needed for the Visualizer
     * String
     * configure a title for the diagram
 
@@ -93,22 +122,25 @@ DepVis can be configured in a configuration properties file (see depvis.properti
 No software is ready, ever ;-) So here are some ideas left (any other feedback very welcome!):
 
 - [ ] Show requires transitive dependencies with a different line style
-- [ ] Include n-transitivity for requires-transitive
+- [ ] Include n-transitivity for requires-transitive (currently limited to 1-transitivity)
 - [ ] Allow filtering of individual relationships (black/white listing)
-- [ ] Include uses/provides relationships
-- [ ] Include the module's package names
 - [ ] Include a module's hash value
 - [ ] Currently, DepVis only shows modules from the Observable Modules (= module path and system modules). Alternatively allow to show modules from a Configuration.
 - [ ] Allow to configure colors, edge styles, node styles/shapes etc. via config file from outside (currently one needs to change Java class depvis.GraphVizHelper.java and recompile).
 - [ ] Adding a GraphViz legend seems only possible with `rankdir=LR`. This settings then flips the whole graph (as it cannot be done in a subgraph only). Any way to get around this?
 - [ ] Write the package name(s) to an exports-to edge
 - [ ] Layouting: Any text added as label to an edge should be visualized "closely"
-- [ ] Open Modules as new module type
-- [ ] usage of "opens" in module-info
 
 ### Latest changes
+- Include all requires static (both in printer and visualizer - visualized as in dotted blue arrows, also done in the legend)
+- Include all opens (only in the printer, not in the visualizer)
+- Include all opens-to (both in printer and visualizer - visualized as in orange arrows, also done in the legend)
+- Prints all uses and all provides (only in the printer, not in the visualizer)
+- Prints the contains, i.e. concealed packages (only in the printer, not in the visualizer)
+- Prints the main class (only in the printer, not in the visualizer)
+- Print output can now prefix each output line with the module name, see option `depvis.prefixWithModuleName`
+- Open Modules are now visualized as octagons
 - Migrated to Java 9 final release (181), migrated to Eclipse 4.7.1a
-- "requires public" in the module-info is now "requires transitive".
 
 ### Related projects
 Jigsaw examples, see https://github.com/accso/java9-jigsaw-examples : Java 9 Jigsaw modules example suite
