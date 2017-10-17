@@ -80,32 +80,32 @@ DepVis can be configured in a configuration properties file (see depvis.properti
    * boolean 
    * want to visualize requires/reads transitive relationships (1-transitive)?
 10. `depvis.showExports`, only needed for the Printer
-   * boolean 
-   * want to print exports?
+    * boolean 
+    * want to print exports?
 11. `depvis.showExportsTo`
-   * boolean 
-   * want to visualize exports-to relationships?
+    * boolean 
+    * want to visualize exports-to relationships?
 12. `depvis.showOpens`, only needed for the Printer
-   * boolean 
-   * want to print opens?
+    * boolean 
+    * want to print opens?
 13. `depvis.showOpensTo`
-   * boolean 
-   * want to visualize opens-to relationships?
+    * boolean 
+    * want to visualize opens-to relationships?
 14. `depvis.showUses`
-   * boolean 
-   * want to print uses?
+    * boolean 
+    * want to print uses?
 15. `depvis.showProvided`
-   * boolean 
-   * want to print provides?
+    * boolean 
+    * want to print provides?
 16. `depvis.showContains`, only needed for the Printer
-   * boolean 
-   * want to print contains, i.e. all concealed packages?
+    * boolean 
+    * want to print contains, i.e. all concealed packages?
 17. `depvis.showMainClass`
-   * boolean 
-   * want to print the main class?
+    * boolean 
+    * want to print the main class?
 16. `depvis.prefixWithModuleName`, only needed for the Printer
-   * boolean 
-   * want to prefix each output line with the module name & version (for easier grep's)?
+    * boolean 
+    * want to prefix each output line with the module name & version (for easier grep's)?
 17. `depvis.outputFileName`, only needed for the Visualizer
     * String
     * filename for the DOT output file
