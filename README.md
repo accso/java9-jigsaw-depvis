@@ -57,10 +57,10 @@ DepVis can be configured in a configuration properties file (see depvis.properti
    * if not set, all modules from system and/or module-path will be used
    * example: `jdk.internal`
 3. `depvis.useSystemModules`
-   * boolean 
+   * boolean, default is true
    * do we want to visualize modules from system (i.e. `java.*`, `jdk.*` etc.)?
 4. `depvis.useModulePath`
-    * boolean value
+    * boolean, default is true
     * want to visualize modules from a module path
     * if so, `depvis.modulePath` needs to be set
 5. `depvis.modulePath`
@@ -68,50 +68,50 @@ DepVis can be configured in a configuration properties file (see depvis.properti
     * set a local module path
     * example: `/jigsaw/example/mlib`
 6. `depvis.showRequires`
-    * boolean 
+    * boolean, default is true
     * want to visualize requires/reads relationships?
 7. `depvis.showRequiresMandated`
-   * boolean 
+   * boolean, default is true
    * want to visualize requires/reads mandated relationships?
 8. `depvis.showRequiresStatic`
-   * boolean 
+   * boolean, default is true
    * want to visualize requires/reads static relationships?
 9. `depvis.showRequiresTransitive`
-   * boolean 
+   * boolean, default is true
    * want to visualize requires/reads transitive relationships (1-transitive)?
 10. `depvis.showExports`, only needed for the Printer
-    * boolean 
+    * boolean, default is true
     * want to print exports?
 11. `depvis.showExportsTo`
-    * boolean 
+    * boolean, default is true
     * want to visualize exports-to relationships?
 12. `depvis.showOpens`, only needed for the Printer
-    * boolean 
+    * boolean, default is true
     * want to print opens?
 13. `depvis.showOpensTo`
-    * boolean 
+    * boolean, default is true
     * want to visualize opens-to relationships?
 14. `depvis.showUses`
-    * boolean 
+    * boolean, default is true
     * want to print uses?
 15. `depvis.showProvided`
-    * boolean 
+    * boolean, default is true
     * want to print provides?
 16. `depvis.showContains`, only needed for the Printer
-    * boolean 
+    * boolean, default is true
     * want to print contains, i.e. all concealed packages?
 17. `depvis.showMainClass`
-    * boolean 
+    * boolean, default is true
     * want to print the main class?
 16. `depvis.prefixWithModuleName`, only needed for the Printer
-    * boolean 
+    * boolean, default is true
     * want to prefix each output line with the module name & version (for easier grep's)?
 17. `depvis.outputFileName`, only needed for the Visualizer
     * String
     * filename for the DOT output file
     * example: `/tmp/moduledependencies.dot`
 18. `depvis.showLegend`, only needed for the Visualizer
-    * boolean 
+    * boolean, default is true
     * want to visualize a legend plus title and timestamp?
     * if so, the graph will be flipped to LR
 19. `depvis.diagramTitle`, only needed for the Visualizer
