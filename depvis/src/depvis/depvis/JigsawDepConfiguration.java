@@ -90,14 +90,18 @@ class JigsawDepConfiguration {
             _includeFilter = new ArrayList<String>();
             String[] tokens = propsFromFile.getProperty("depvis.includeFilter", "").split(",");
             for (String token: tokens) {
-                _includeFilter.add(token.trim());
+                if (token != null && !"".equals(token)) {
+                	_includeFilter.add(token.trim());
+                }
             }
         }
         if (propsFromFile.containsKey("depvis.excludeFilter")) {
             _excludeFilter = new ArrayList<String>();
             String[] tokens = propsFromFile.getProperty("depvis.excludeFilter", "").split(",");
             for (String token: tokens) {
-                _excludeFilter.add(token.trim());
+                if (token != null && !"".equals(token)) {
+                	_excludeFilter.add(token.trim());
+                }
             }
         }
 
