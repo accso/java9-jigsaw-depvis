@@ -10,7 +10,7 @@ DOT_OUTPUTFILENAME_LEGEND=$(grep outputFileName ${PROPS_FILENAME} | sed s/'depvi
 
 # run the module dependency visualizer (producing a GraphViz dot file)
 echo "Running JigsawDepVisualizer to produce ${DOT_OUTPUTFILENAME}.dot and ${DOT_OUTPUTFILENAME_LEGEND}.dot"
-$JAVA_HOME/bin/java --module-path ${DEPVIS_MODULE_PATH}\;${DEPVIS_AUTOMATIC_MODULE_PATH} --module depvis/depvis.JigsawDepVisualizer ${PROPS_FILENAME}
+$JAVA_HOME/bin/java --module-path ${DEPVIS_MODULE_PATH}${PATH_SEPARATOR}${DEPVIS_AUTOMATIC_MODULE_PATH} --module depvis/depvis.JigsawDepVisualizer ${PROPS_FILENAME}
 
 # ... and then run GraphViz to render to two PNG image files
 IMAGE_OUTPUTFORMAT=png

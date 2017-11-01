@@ -36,12 +36,13 @@ Result looks like this (in this case all Java 9 system modules (build 181) are v
 
 ### Setup
 1. Clone this repo.
-2. Install a Java 9 JDK with Jigsaw support. DepVis has been tested with Java 9 build 181 as of September 2017.
+2. Install a Java 9 JDK with Jigsaw support. DepVis has been tested with Java9 build 181 and also with 9.0.1-11 (both on Windows 10, x64) 
 3. Install GraphViz 2.38.
 4. If running on Windows, install a bash, like for example [Babun](https://babun.github.io/)
 5. Edit file `env.sh` to configure `JAVA_HOME` and `GRAPHVIZ_HOME` (see TODO markers)
-6. Call `clean.sh`, `compile.sh` and `run-vis.sh` (or `all.sh` for all in one step).
-7. Output is `moduledependencies.dot` and `moduledependencies.png` (and a second file pair `...with-legend`).
+6. Also edit file `env.sh` to configure the path separator. If run on Windows, use \; (a blackslash quoting a ;). If you run all stuff on *nix, use a colon : .
+7. Call `clean.sh`, `compile.sh` and `run-vis.sh` (or `all.sh` for all in one step).
+8. Output is `moduledependencies.dot` and `moduledependencies.png` (and a second file pair `...with-legend`).
 
 ### Configuration
 DepVis can be configured in a configuration properties file (see depvis.properties) as follows:
@@ -132,6 +133,11 @@ No software is ready, ever ;-) So here are some ideas left (any other feedback v
 - [ ] Layouting: Any text added as label to an edge should be visualized "closely"
 
 ### Latest changes
+
+#### Migration to Java 9.0.1 (Release)
+No changes necessary
+
+#### Latest features, all new in 0.3 
 - Include all requires static (both in printer and visualizer - visualized as in dotted blue arrows, also done in the legend)
 - Include all opens (only in the printer, not in the visualizer)
 - Include all opens-to (both in printer and visualizer - visualized as in orange arrows, also done in the legend)
