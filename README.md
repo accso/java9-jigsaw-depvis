@@ -1,7 +1,7 @@
 # DepVis (Java 9 Jigsaw Dependency Visualizer)
 
 ### Info
-Written by [Martin Lehmann](https://github.com/MartinLehmann1971), [Kristine Schaal](https://github.com/kristines) and [Rüdiger Grammes](https://github.com/rgrammes) 
+Written by [Martin Lehmann](https://github.com/MartinLehmann1971), [Kristine Schaal](https://github.com/kristines) and [RÃ¼diger Grammes](https://github.com/rgrammes) 
 
 Version 0.3
 
@@ -34,6 +34,8 @@ Result looks like this (in this case all Java 9 system modules (build 181) are v
 #### Legend
 ![Legend](legend.jpg)
 
+# License
+This work has been published under Apache License 2.0. Please refer to file 'LICENSE' for further details.
 ### Setup
 1. Clone this repo.
 2. Install a Java 9 JDK with Jigsaw support. DepVis has been tested with Java9 build 181 and also with 9.0.1-11 (both on Windows 10, x64) 
