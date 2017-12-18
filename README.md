@@ -158,3 +158,6 @@ Thx to the GraphViz team (http://www.graphviz.org) for this magic tool!
 
 Thx also to [Kohsuke Kawaguchi](https://github.com/kohsuke) for his graphviz-api at https://github.com/kohsuke/graphviz-api!
 We have forked his API to https://github.com/MartinLehmann1971/graphviz-api and made a few minor changes (mainly to avoid duplicates of GraphViz Nodes based on their ID).
+
+# License
+This work has been published under Apache License 2.0. Please refer to file 'LICENSE' for further details.
