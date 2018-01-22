@@ -1,7 +1,7 @@
 # DepVis (Java 9 Jigsaw Dependency Visualizer)
 
 ### Info
-Written by [Martin Lehmann](https://github.com/MartinLehmann1971), [Kristine Schaal](https://github.com/kristines) and [Rüdiger Grammes](https://github.com/rgrammes) 
+Written by [Martin Lehmann](https://github.com/mrtnlhmnn), [Kristine Schaal](https://github.com/kristines) and [Rüdiger Grammes](https://github.com/rgrammes) 
 
 Version 0.3
 
@@ -157,7 +157,7 @@ Jigsaw examples, see https://github.com/accso/java9-jigsaw-examples : Java 9 Jig
 Thx to the GraphViz team (http://www.graphviz.org) for this magic tool!
 
 Thx also to [Kohsuke Kawaguchi](https://github.com/kohsuke) for his graphviz-api at https://github.com/kohsuke/graphviz-api!
-We have forked his API to https://github.com/MartinLehmann1971/graphviz-api and made a few minor changes (mainly to avoid duplicates of GraphViz Nodes based on their ID).
+We have forked his API to https://github.com/mrtnlhmnn/graphviz-api and made a few minor changes (mainly to avoid duplicates of GraphViz Nodes based on their ID).
 
 # License
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
